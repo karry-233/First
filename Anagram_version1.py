@@ -6,6 +6,9 @@ Created on Mon May 28 23:18:03 2018
 @author: karry
 """
 
+"""Make a program that can find single word anagrams that use all the characters in a given string 
+(e.g. “omnsotare” -> “astronomer”)"""
+
 def word_to_key(word=input("Anagram letters: ")):
     return ''.join(sorted(word.lower()))
 
