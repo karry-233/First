@@ -6,6 +6,9 @@ Created on Mon May 28 16:53:28 2018
 @author: karry
 """
 
+"""From 16 letters make words (easiest version)"""
+
+
 def word_to_key(word):
     return ''.join(sorted(word.lower()))
 
