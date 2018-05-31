@@ -9,6 +9,9 @@ Created on Tue May 29 19:36:16 2018
 
 """From 16 letters make words -Binary Search (second version)"""
 
+from more_itertools import unique_everseen
+from itertools import chain, combinations    
+
 
 def word_to_key(word):
     return ''.join(sorted(word.lower()))
@@ -29,8 +32,6 @@ def build_word_list(words='dict.txt'):
 
 
 #Create subsets
-from itertools import chain, combinations    
-
 def subsets(iterable):
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(len(s),5,-1))
@@ -54,7 +55,6 @@ def find_the_word(alist,item):
 	
     return found
 
-from more_itertools import unique_everseen
 
 def get_anagrams(word):
     a = list(map(''.join, subsets(word)))
