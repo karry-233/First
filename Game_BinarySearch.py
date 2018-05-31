@@ -25,25 +25,18 @@ def build_word_list(words='dict.txt'):
         else:
             word_list[key] = [line.strip().lower()]
     words.close()
-    return word_list
-
-#print(list(build_word_list(words='dict.txt').keys())[32920])
-    
+    return word_list  
 
 
 #Create subsets
-def subsets():
-    """L = input('16 letters:')  -String"""
-    subset = []
-    L = word_to_key(word)
-    for i in range(len(L)):
-        for j in range(i,len(L)):
-            subset.append(L[i:j + 1])
-    return subset
+from itertools import chain, combinations    
 
+def subsets(iterable):
+    s = list(iterable)
+    return chain.from_iterable(combinations(s, r) for r in range(len(s),5,-1))
 
 #Binary Search
-def find_the_word(alist, item):
+def find_the_word(alist,item):
     alist = sorted(alist)
     first = 0
     last = len(alist)-1
@@ -61,19 +54,19 @@ def find_the_word(alist, item):
 	
     return found
 
-#print(find_the_word(build_word_list(words='dict.txt'),'bac'))
+from more_itertools import unique_everseen
 
-def get_anagrams():
-    for eachss in subsets():
+def get_anagrams(word):
+    a = list(map(''.join, subsets(word)))
+    b = list(unique_everseen(a))
+    for eachss in b:
+        #print(eachss)
         if find_the_word(build_word_list(),eachss) == True:
-            anagrams = build_word_list()[eachss]
-            for word in anagrams:
-                print(word)
+            anagrams = build_word_list()[word_to_key(eachss)]
+            print(anagrams)
         else:
             continue
-            #print('No anagrams')
 
-word = input('16 letters:')  
 
-get_anagrams()
+get_anagrams(word=input('16 letters:'))
 
