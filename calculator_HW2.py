@@ -121,6 +121,8 @@ def runTest():
     test("1.0*3/5", 0.6)
     test("1*3/5", 0.6)
     test("5+1/3", 5.33333333)
+    test("1.5*4+3-2/0.5",5)
+    test("4.0/4*3.5-2",1.5)
     print "==== Test finished! ====\n"
 
 runTest()
