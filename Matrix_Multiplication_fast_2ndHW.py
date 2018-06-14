@@ -6,6 +6,10 @@ Created on Mon Jun  4 14:34:26 2018
 @author: karry
 """
 
+
+""" n * n matrix multiplication (fast version)"""
+
+
 import numpy, sys, time
 
 
