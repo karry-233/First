@@ -6,6 +6,10 @@ Created on Wed Jun  6 14:40:37 2018
 @author: karry
 """
 
+
+""" n * n Matrix multiplication (slow version)"""
+
+
 import numpy, sys, time
 
 
