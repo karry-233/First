@@ -7,7 +7,7 @@ Created on Thu Jun 14 13:48:52 2018
 """
 
 
-"""calculator with plus, minus, multiply, divide and parenthese function"""
+"""calculator with plus, minus, multiply, divide and brackets function"""
 
 
 import re
@@ -103,29 +103,34 @@ def evaluate(tokens):
                 print 'Invalid syntax'
         index += 1
     return answer
+#Until here, all the same as homework2 
+#calculate for +=*/
 
 
+#use howework2's function to calculate the part inside a bracket and return the answer
 def resolve_line_within_brackets(expr):
     tokens = Newtokens(tokenize(expr))
     answer = evaluate(tokens)
     return answer
 
+#function to calculate the whole equation and return the final answer to the whole equation 
 def general_calculate(line):
-    if "(" and ")" in line:
-        inner_brackets_found = True
-    while inner_brackets_found:
+    inner_brackets_found = True
+    while inner_brackets_found:    #loop until there is no brackets left in the equation 
         m = re.search('\([^\(\)]+\)', line)
         if m != None:
-            # fetch a resolvable expression, and immediately drop its outer brackets
+            #get the equation inside the bracket which should be calculated first 
             line_with_brackets = line[m.start():m.end()]
             subline= line_with_brackets[1:-1]
-            answer = str(resolve_line_within_brackets(subline))
+            answer = str(resolve_line_within_brackets(subline))    #calculate the part inside the bracket
             line = line.replace(line_with_brackets, answer)
-            # print expression for demonstrative purposes
+            #put the answer back into the original equation and get a new equation 
         else:
-            inner_brackets_found = False
+            #in the case there is no brackets in the equation 
+            inner_brackets_found = False    
             answer = resolve_line_within_brackets(line)
     return answer
+
 
 def test(line, expectedAnswer):
     actualAnswer = general_calculate(line)
@@ -134,10 +139,11 @@ def test(line, expectedAnswer):
     else:
         print "FAIL! (%s should be %f but was %f)" % (line, expectedAnswer, actualAnswer)
 
-
-# Add more tests to this function :)
+        
 def runTest():
     print "==== Test started! ===="
+    test("2.0*3", 6)
+    test("1.2+2*3", 7.2)
     test("(3*(1+4)-9)*(5+(3*(2-1)))", 48)
     test("(1.0+2.1-3)*6+3", 3.6)
     test("2.0*(3/5.0+2)", 5.2)
