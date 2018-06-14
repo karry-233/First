@@ -11,7 +11,7 @@ Created on Tue Jun 12 15:42:43 2018
 calculator with plus, minus, multiply and divide function and have more tests
 """
 
-
+#read the number from line
 def readNumber(line, index):
     number = 0
     flag = 0
@@ -45,6 +45,7 @@ def readDivide(line, index):
     token = {'type': 'DIVIDE'}
     return token, index + 1
 
+#return a list called tokens including all the numbers and "+-*/" with the order unchanged
 def tokenize(line):
     tokens = []
     index = 0
@@ -65,6 +66,8 @@ def tokenize(line):
         tokens.append(token)
     return tokens
 
+#calculate * & / first, put the answer back into the "tokens" list and delete the original "a *(/) b" 
+#return a new tokens list contains only plus and minus calculation
 def Newtokens(tokens):
     index = 0
     while index < len(tokens):
@@ -81,13 +84,14 @@ def Newtokens(tokens):
                 tokens.insert(index+1, token)
                 del tokens[index-2:index+1]
                 index -= 2
-            elif tokens[index - 1]['type'] == 'DIVIDE' and tokens[index]['number'] == 0:
+            elif tokens[index - 1]['type'] == 'DIVIDE' and tokens[index]['number'] == 0:  #for the case of n / 0
                 print 'cannot be calculated'
                 exit(1)
         index += 1
     return tokens
 
-        
+
+#calculate plus and minus
 def evaluate(tokens):
     answer = 0
     tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
@@ -119,7 +123,7 @@ def runTest():
     test("1+2", 3)
     test("1.0+2.1-3", 0.1)
     test("1.0*3/5", 0.6)
-    test("1*3/5", 0.6)
+    test("1*3/5.0", 0.6)
     test("5+1/3", 5.33333333)
     test("1.5*4+3-2/0.5",5)
     test("4.0/4*3.5-2",1.5)
