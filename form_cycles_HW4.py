@@ -49,7 +49,7 @@ def inputword_search(inputword):
     
 def form_cycles(inputword,n):
     index_of_inputword = inputword_search(inputword)
-    cycles = list(nx.all_simple_paths(graph,index_of_inputword,index_of_inputword,n)) 
+    cycles = list(nx.all_simple_paths(graph,index_of_inputword,index_of_inputword,int(n))) 
     # find all the cycles that includes less than n nodes 
     if cycles == []:
         print("No cycle is found.")
