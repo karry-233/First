@@ -65,7 +65,7 @@ def form_cycles(inputword,n):
             #print("-------------------")
         # print out ways when n = 2 
         # for n = 3 or more, there are too many...
-    return len(cycles)
+        return len(cycles)
 
 
 graph, word_index = build_graph()
