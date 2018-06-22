@@ -74,7 +74,7 @@ while True:
     inputword = input("Please enter a word:")
     n = input("Please decide the maximum size of cycles:")
     result = form_cycles(inputword,n)
-    print("There are",result, "ways to form a cycle within n times")
+    print("There are",result, "ways to form a cycle within", n, "times")
     # n = 2,3,4,5...
     # n = 2: result = inputword -> anotherword -> inputword
     # n = 3: result = inputword -> anotherword1 -> anotherword2 -> inputword
