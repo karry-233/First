@@ -39,7 +39,7 @@ def build_graph():
 def inputword_search(inputword):
     try:    
         index_of_inputword = word_index.get(inputword)
-        print(inputword, "exists in wikipedia.")
+        print("'", inputword, "'", "exists in wikipedia.")
         return index_of_inputword
     except:
         print(inputword, "is not in wikipedia.")
@@ -48,6 +48,7 @@ def inputword_search(inputword):
     
     
 def form_cycles(inputword,n):
+    number_of_ways = 0
     index_of_inputword = inputword_search(inputword)
     cycles = list(nx.all_simple_paths(graph,index_of_inputword,index_of_inputword,int(n))) 
     # find all the cycles that includes less than n nodes 
@@ -55,19 +56,22 @@ def form_cycles(inputword,n):
         print("No cycle is found.")
     else:
         for cycle in cycles:
+            number_of_ways += 1
             print("Here is the cycle")
             for node in cycle:
                 for word, index in word_index.items():   
                     if index == node:
                         print(word, "->")
             print("-------------------")
-                   
+    return number_of_ways
     
 graph, word_index = build_graph()
 
 while True:
     inputword = input("Please enter a word:")
     n = input("Please decide the maximum size of cycles:")
-    form_cycles(inputword,n)
-    # n = 3,4,5...
-    # n = 3: result = inputword -> anotherword -> inputword
+    result = form_cycles(inputword,n)
+    print(result)
+    # n = 2,3,4,5...
+    # n = 2: result = inputword -> anotherword -> inputword
+    # n = 3: result = inputword -> anotherword1 -> anotherword2 -> inputword
