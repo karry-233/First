@@ -64,8 +64,10 @@ def form_cycles(inputword,n):
                    
     
 graph, word_index = build_graph()
-inputword = input("Please enter a word:")
-n = input("Please decide the maximum size of cycles:")
-form_cycles(inputword,n)
-# n = 3,4,5...
-# n = 3: result = inputword -> anotherword -> inputword
+
+while True:
+    inputword = input("Please enter a word:")
+    n = input("Please decide the maximum size of cycles:")
+    form_cycles(inputword,n)
+    # n = 3,4,5...
+    # n = 3: result = inputword -> anotherword -> inputword
